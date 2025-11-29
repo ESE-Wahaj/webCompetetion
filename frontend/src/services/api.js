@@ -47,12 +47,10 @@ api.interceptors.response.use(
 
       switch (status) {
         case 401:
-          // Unauthorized - clear token and redirect to login
+          // Unauthorized - clear token
+          // Don't auto-redirect, let AuthContext handle it
           localStorage.removeItem('token');
           localStorage.removeItem('user');
-          if (window.location.pathname !== '/login') {
-            window.location.href = '/login';
-          }
           break;
 
         case 403:
